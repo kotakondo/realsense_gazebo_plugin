@@ -75,7 +75,7 @@ void GazeboRosRealsense::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
   if (pointCloud_) {
     this->pointcloud_pub_ =
       this->node_->create_publisher<sensor_msgs::msg::PointCloud2>(
-      prefix + std::string("/") + pointCloudTopic_, rclcpp::SystemDefaultsQoS());
+      prefix + std::string("/") + pointCloudTopic_, rclcpp::SensorDataQoS());
   }
 
   RCLCPP_INFO(node_->get_logger(), "Loaded Realsense Gazebo ROS plugin.");
