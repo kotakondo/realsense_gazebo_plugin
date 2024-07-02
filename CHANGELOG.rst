@@ -2,8 +2,8 @@
 Changelog for package realsense_gazebo_plugin
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+3.0.2 (2024-07-02)
+------------------
 * Merge branch 'man/feat/image-qos-best-effort' into 'alum-devel'
   Man/feat/image qos best effort
   See merge request device/realsense_gazebo_plugin!19
