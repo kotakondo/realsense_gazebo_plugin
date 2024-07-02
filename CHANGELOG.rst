@@ -2,6 +2,15 @@
 Changelog for package realsense_gazebo_plugin
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'man/feat/image-qos-best-effort' into 'alum-devel'
+  Man/feat/image qos best effort
+  See merge request device/realsense_gazebo_plugin!19
+* changed qos profile for camera color pub
+* using sensor data QoS
+* Contributors: andreacapodacqua, martinaannicelli, sergiomoyano
+
 3.0.1 (2024-02-27)
 ------------------
 * Merge branch 'smd/feat/topic_prefix' into 'alum-devel'
