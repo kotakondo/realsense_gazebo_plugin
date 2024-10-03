@@ -28,7 +28,12 @@ GazeboRosRealsense::~GazeboRosRealsense()
 void GazeboRosRealsense::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
 {
 
-  this->node_ = rclcpp::Node::make_shared("GazeboRealsenseNode");
+  std::string prefix_ = "";
+  // Check if the SDF contains a prefix parameter
+  if (_sdf->HasElement("prefix")) {
+    prefix_ = _sdf->Get<std::string>("prefix");
+  }
+  this->node_ = rclcpp::Node::make_shared(prefix_ + "_GazeboRealsenseNode");
 
   // Make sure the ROS node for Gazebo has already been initialized
   if (!rclcpp::ok()) {
