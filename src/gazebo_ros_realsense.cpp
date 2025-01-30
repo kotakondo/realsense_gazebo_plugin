@@ -166,7 +166,8 @@ bool GazeboRosRealsense::FillPointCloudHelper(
 
       double depth = toCopyFrom[index++];  // + 0.0*this->myParent->GetNearClip();
 
-      if (depth > pointCloudCutOff_ && depth < pointCloudCutOffMax_) {
+      if (depth > pointCloudCutOff_ && depth < pointCloudCutOffMax_) 
+      {
         // in optical frame
         // hardcoded rotation rpy(-M_PI/2, 0, -M_PI/2) is built-in
         // to urdf, where the *_optical_frame should have above relative
@@ -174,6 +175,11 @@ bool GazeboRosRealsense::FillPointCloudHelper(
         *iter_x = depth * tan(yAngle);
         *iter_y = depth * tan(pAngle);
         *iter_z = depth;
+      }
+      else if (depth >= pointCloudCutOffMax_) { // point in the unseeable range
+        *iter_x = pointCloudCutOffMax_ * tan(yAngle);
+        *iter_y = pointCloudCutOffMax_ * tan(pAngle);
+        *iter_z = pointCloudCutOffMax_;
       } else { // point in the unseeable range
         *iter_x = *iter_y = *iter_z = std::numeric_limits<float>::quiet_NaN();
         point_cloud_msg.is_dense = false;
