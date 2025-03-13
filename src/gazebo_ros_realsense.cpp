@@ -56,6 +56,9 @@ void GazeboRosRealsense::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
 
   this->itnode_.reset(new image_transport::ImageTransport(this->node_));
 
+  rclcpp::QoS sensor_qos(rclcpp::KeepLast(1));
+  sensor_qos.best_effort().durability_volatile();
+
   this->color_pub_ = this->itnode_->advertiseCamera(
     cameraParamsMap_[COLOR_CAMERA_NAME].topic_name, 2);
   this->ir1_pub_ = this->itnode_->advertiseCamera(
@@ -67,7 +70,7 @@ void GazeboRosRealsense::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
 
   if (pointCloud_) {
     this->pointcloud_pub_ = this->node_->create_publisher<sensor_msgs::msg::PointCloud2>(
-      pointCloudTopic_, rclcpp::SystemDefaultsQoS());
+      pointCloudTopic_, sensor_qos);
   }
 
   RCLCPP_INFO(node_->get_logger(), "Loaded Realsense Gazebo ROS plugin.");
